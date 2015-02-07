@@ -1,0 +1,4 @@
+/include/globus/globus_xio_compression_driver.h
+/lib64/libglobus_xio_compression_driver.so
+/lib64/libglobus_xio_compression_driver.a
+/lib64/libglobus_xio_compression_driver.la

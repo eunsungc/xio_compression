@@ -1,0 +1,14 @@
+prefix=/usr/local/globus-5.2.4
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib64
+includedir=${prefix}/include/globus
+GLOBUS_FLAVOR_NAME=gcc64dbg
+flavorincludedir=${includedir}/${GLOBUS_FLAVOR_NAME}
+
+Name: globus-xio-compression-driver
+Description: Globus Toolkit - Globus XIO Compression Driver
+Version: 0.9
+Requires.private: globus-common >= 14  globus-xio >= 3
+Libs: -L${libdir}
+Libs.private: 
+Cflags:  -I${includedir} -I${flavorincludedir} 

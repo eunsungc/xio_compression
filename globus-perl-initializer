@@ -1,0 +1,36 @@
+my ($prefix, $exec_prefix, $libdir, $perlmoduledir);
+my ($sbindir, $bindir, $includedir, $datarootdir,
+    $datadir, $libexecdir, $sysconfdir, $sharedstatedir,
+    $localstatedir, $aclocaldir);
+BEGIN
+{
+    if (exists $ENV{GLOBUS_LOCATION})
+    {
+        $prefix = $ENV{GLOBUS_LOCATION};
+    }
+    else
+    {
+        $prefix = "/usr/local/globus-5.2.4";
+    }
+
+    $exec_prefix = "${prefix}";
+    $libdir = "${exec_prefix}/lib64";
+    $sbindir = "${exec_prefix}/sbin";
+    $bindir = "${exec_prefix}/bin";
+    $includedir = "${prefix}/include/globus";
+    $datarootdir = "${prefix}/share";
+    $datadir = "${prefix}/share";
+    $perlmoduledir = "${prefix}/lib/perl";
+    $libexecdir = "${datadir}/globus";
+    $sysconfdir = "${prefix}/etc";
+    $sharedstatedir = "${prefix}/com";
+    $localstatedir = "${prefix}/var";
+    $aclocaldir = "${datadir}/globus/aclocal";
+
+    if (exists $ENV{GPT_LOCATION})
+    {
+        unshift(@INC, "$ENV{GPT_LOCATION}/lib/perl");
+    }
+
+    unshift(@INC, "${perlmoduledir}");
+}

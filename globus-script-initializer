@@ -1,0 +1,18 @@
+if test -n "${GLOBUS_LOCATION}" ; then
+    prefix="${GLOBUS_LOCATION}"
+else
+    prefix="/usr/local/globus-5.2.4"
+fi
+
+exec_prefix="${prefix}"
+sbindir="${exec_prefix}/sbin"
+bindir="${exec_prefix}/bin"
+libdir="${exec_prefix}/lib64"
+includedir="${prefix}/include/globus"
+datarootdir="${prefix}/share"
+datadir="${prefix}/share"
+libexecdir="${datadir}/globus"
+sysconfdir="${prefix}/etc"
+sharedstatedir="${prefix}/com"
+localstatedir="${prefix}/var"
+aclocaldir="${datadir}/globus/aclocal"

@@ -1,0 +1,11 @@
+1. compile blosc library
+	- mkdir build
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local $HOME/blosc-1.2.3
+    - make;make install
+    - set LD_LIBRARY_PATH=/usr/local/lib or copy *.so /usr/local/globus-5.2.4/lib64
+2. compile xio_compress library
+    - set CPATH=/usr/local/include
+    - modify Makefile:add -lblosc everywhere -lglobus_common appears
+    - make;make install
+3. start gridftp server
+	- set GLOBUS_THREAD_MODEL=pthread

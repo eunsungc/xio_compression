@@ -1,0 +1,41 @@
+[Sep. 5.]
+* Turn on debug print in Globus toolkit
+   - GT: Make -e BUILD_DEBUG=
+   - xio_compression: dbug->printf
+* Search pthead option
+   - set GLOBUS_THREAD_MODEL in globus_thread.h; globus_thread_set_model(GLOBUS_THREAD_MODEL_PTHREADS);
+   - in _activate() ==> FAIL
+   - should set environment variable GLOBUS_THREAD_MODEL to pthread prior to starting server&client
+* Create a pool of threads in _open_cb()
+   - implement globus_l_xio_compression_mt_write()
+
+[Sep. 6.]
+* Implement *_thread_kicker() & *_compression_mt_write()
+   - 
+
+[Sep. 9.]
+* include BLOSC library
+   - compile BLOSC
+      1) mkdir build;cd build 2) cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local $HOME/blosc-1.2.3
+   - modify Makefile:add -lblosc everywhere -lglobus_common appears
+
+ * replace compress/decompress function
+   - look into examples of BLOSC
+
+ [Sep. 10.]
+  * Makefile modification
+   - add -lblosc everywhere -lglobus_common appears
+
+[Sep. 11.]
+* ERROR: globus_xio: An end of file occurred.
+  - 
+* Remove mutex protection in compress&decompress
+  
+[Oct. 25]
+  * Fix "An end of file occurred" BUG: due to compression driver is not loaded at other sites. exp_name should be set to arg[1] at all nodes.
+  * ERROR: 2 servers at one node->stalled ==> comment blosc_init(), which should not be called more than once.
+  * ERROR: stalled sometimes when thread_join() implementation... due to message buffer allocation..
+    - msg size -> 51MB * 10
+  * blosc multithreading issues....=>mutex lock on the decompress() codes & set_nrthread()
+  * measure cluster-wide spend time to accurately measure throughput-->DONE
+  * d2d implementation
